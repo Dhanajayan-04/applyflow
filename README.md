@@ -4,13 +4,13 @@
 
 ApplyFlow is a job application management platform designed to help job seekers organize their applications, track recruitment progress, manage interview schedules and monitor their career journey in one place.
 
-## 🎯 Problem Statement
+## Problem Statement
 
 Job seekers often apply to multiple companies through different platforms, making it difficult to track application statuses, interview schedules, deadlines and recruiter information.
 
 ApplyFlow aims to solve this problem by providing a centralized platform to manage the entire job application process.
 
-## ✨ Planned Features
+## Planned Features
 
 - **User Authentication** – Secure registration and login.
 - **Dashboard** – Overview of job applications and recruitment progress.
