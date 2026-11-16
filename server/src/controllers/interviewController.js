@@ -15,9 +15,37 @@ const createInterview = async (req, res) => {
         } = req.body;
 
         // Validate required fields
-        if (!application || !interviewDate || !interviewType) {
+        const allowedInterviewTypes = [
+            "Online",
+            "Phone",
+            "In-person",
+            "Technical",
+            "HR",
+            "Managerial"
+        ];
+
+        if (!application ||
+            !interviewDate ||
+            !interviewType
+        ) {
             return res.status(400).json({
                 message: "Application, interview date and interview type are required"
+            });
+        }
+
+        if (typeof interviewType !== "string" ||
+            !allowedInterviewTypes.includes(interviewType)
+        ) {
+            return res.status(400).json({
+                message: "Invalid interview type"
+            });
+        }
+
+        if (typeof interviewDate !== "string" ||
+            Number.isNaN(Date.parse(interviewDate))
+        ) {
+            return res.status(400).json({
+                message: "Invalid interview date"
             });
         }
 
@@ -62,8 +90,7 @@ const createInterview = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -84,8 +111,7 @@ const getInterviews = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -116,8 +142,7 @@ const getInterviewById = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -140,6 +165,42 @@ const updateInterview = async (req, res) => {
         if (!interview) {
             return res.status(404).json({
                 message: "Interview not found"
+            });
+        }
+
+        // Allowed interview types
+        const allowedInterviewTypes = [
+            "Online",
+            "Phone",
+            "In-person",
+            "Technical",
+            "HR",
+            "Managerial"
+        ];
+
+        // Validate interview date
+        if (
+            interviewDate !== undefined &&
+            (
+                typeof interviewDate !== "string" ||
+                Number.isNaN(Date.parse(interviewDate))
+            )
+        ) {
+            return res.status(400).json({
+                message: "Invalid interview date"
+            });
+        }
+
+        // Validate interview type
+        if (
+            interviewType !== undefined &&
+            (
+                typeof interviewType !== "string" ||
+                !allowedInterviewTypes.includes(interviewType)
+            )
+        ) {
+            return res.status(400).json({
+                message: "Invalid interview type"
             });
         }
 
@@ -181,8 +242,7 @@ const updateInterview = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -213,8 +273,7 @@ const deleteInterview = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };

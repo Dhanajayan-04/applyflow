@@ -17,9 +17,43 @@ const createApplication = async (req, res) => {
         } = req.body;
 
         // Validate required fields
-        if (!companyName || !jobTitle) {
+        if (!companyName?.trim() || !jobTitle?.trim()) {
             return res.status(400).json({
                 message: "Company name and job title are required"
+            });
+        }
+
+        const allowedJobTypes = [
+            "Full-time",
+            "Part-time",
+            "Internship",
+            "Contract"
+        ];
+
+        const allowedStatuses = [
+            "Applied",
+            "Assessment",
+            "Interview",
+            "Offer",
+            "Rejected",
+            "Withdrawn"
+        ];
+
+        if (
+            jobType !== undefined &&
+            !allowedJobTypes.includes(jobType)
+        ) {
+            return res.status(400).json({
+                message: "Invalid job type"
+            });
+        }
+
+        if (
+            status !== undefined &&
+            !allowedStatuses.includes(status)
+        ) {
+            return res.status(400).json({
+                message: "Invalid application status"
             });
         }
 
@@ -43,8 +77,7 @@ const createApplication = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error"
         });
     }
 };
@@ -66,8 +99,7 @@ const getApplications = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -98,8 +130,7 @@ const getApplicationById = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -126,6 +157,54 @@ const updateApplication = async (req, res) => {
         if (!application) {
             return res.status(404).json({
                 message: "Application not found"
+            });
+        }
+
+
+        const allowedJobTypes = [
+            "Full-time",
+            "Part-time",
+            "Internship",
+            "Contract"
+        ];
+
+        const allowedStatuses = [
+            "Applied",
+            "Assessment",
+            "Interview",
+            "Offer",
+            "Rejected",
+            "Withdrawn"
+        ];
+
+        // Validate company name and job title
+        if ((companyName !== undefined &&
+                (typeof companyName !== "string" || !companyName.trim())) ||
+            (jobTitle !== undefined && 
+                (typeof jobTitle !== "string" || !jobTitle.trim()))
+        ) {
+            return res.status(400).json({
+                message: "Company name and job title must be non-empty strings"
+            });
+        }
+
+        // Validate job type
+        if (
+            jobType !== undefined &&
+            !allowedJobTypes.includes(jobType)
+        ) {
+            return res.status(400).json({
+                message: "Invalid job type"
+            });
+        }
+
+        // Validate application status
+        if (
+            status !== undefined &&
+            !allowedStatuses.includes(status)
+        ) {
+            return res.status(400).json({
+                message: "Invalid application status"
             });
         }
 
@@ -160,8 +239,7 @@ const updateApplication = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
@@ -192,8 +270,7 @@ const deleteApplication = async (req, res) => {
         }
 
         res.status(500).json({
-            message: "Server error",
-            error: error.message
+            message: "Internal Server error",
         });
     }
 };
