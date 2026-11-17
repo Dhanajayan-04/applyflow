@@ -1,4 +1,4 @@
-# ApplyFlow 🚀
+# ApplyFlow 
 
 **A full-stack job application tracking platform built with React, Node.js, Express.js and MongoDB.**
 
@@ -21,7 +21,7 @@ ApplyFlow aims to solve this problem by providing a centralized platform to mana
 - **Analytics** – Visualize application trends and recruitment progress.
 - **Reminders** – Keep track of upcoming interviews and follow-ups.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - React
@@ -45,7 +45,7 @@ ApplyFlow aims to solve this problem by providing a centralized platform to mana
 - Postman
 - Docker (planned)
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 applyflow/
@@ -56,13 +56,13 @@ applyflow/
 └── .gitignore
 ```
 
-## ⚙️ Getting Started
+## Getting Started
 
 The application is currently under development.
 
 Setup and installation instructions will be added as the frontend and backend are implemented.
 
-## 🗺️ Development Roadmap
+## Development Roadmap
 
 - [ ] Project planning and architecture
 - [ ] Backend and database setup
@@ -75,14 +75,14 @@ Setup and installation instructions will be added as the frontend and backend ar
 - [ ] Testing and security improvements
 - [ ] Deployment
 
-## 🎯 Project Goal
+## Project Goal
 
 Build a practical, scalable and user-friendly full-stack application while exploring real-world software development practices, backend architecture, database management and frontend development.
 
-## 📌 Project Status
+## Project Status
 
-**In Development 🚧**
+**In Development **
 
 ---
 
-Built with ❤️ by [Dhanajayan G](https://github.com/Dhanajayan-04)
+Built with by [Dhanajayan G](https://github.com/Dhanajayan-04)
